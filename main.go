@@ -11,10 +11,6 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func delay() {
-	time.Sleep(10 * time.Second)
-}
-
 func sendMail(subject string, templatePath string, to []string) {
 	//get html
 	var body bytes.Buffer
@@ -36,7 +32,6 @@ func sendMail(subject string, templatePath string, to []string) {
 	)
 	headers := "MIME-version: 1.0;\nContent-Type: text/html; charset=\"UTF-8\";"
 	msg := "Subject: " + subject + "\n" + headers + "\n\n" + body.String()
-	delay()
 	err = smtp.SendMail(
 		"smtp.gmail.com:587",
 		auth,
